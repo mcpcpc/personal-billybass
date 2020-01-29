@@ -51,7 +51,7 @@ void loop() {
 //        tail_motor->run(RELEASE);
 //        delay(1);
 //    }
-    // 
+    
     if (sensorValue > 13) {
         delay(1);
         head_motor->setSpeed(200);
