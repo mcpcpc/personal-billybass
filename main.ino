@@ -34,7 +34,8 @@ void setup() {
 
 void loop() {
     uint8_t i;
-    int sensorValue = analogRead(SoundInPin);
+    int sensorValue = analogRead(SoundInPin)*1.3;
+//    Serial.println(sensorValue);
     int LEDValue = map(sensorValue,0,512,0,255);
     sensorValue = map(sensorValue,0,512,0,180);
 
@@ -54,21 +55,23 @@ void loop() {
     
     if (sensorValue > 13) {
         delay(1);
-        head_motor->setSpeed(200);
-        delay(1)
-        head_motor->run(FORWARD);
-        delay(2000);
+        tail_motor->setSpeed(200);
+        delay(1);
+        tail_motor->run(FORWARD);
+        //delay(2000);
+        delay(1);
     }
 
     if (sensorValue > 12) {
         delay(1);
         mouth_motor->run(FORWARD);
-        for (i=140; i<255 i++) {
+        delay(1);
+        for (i=140; i<255; i++) {
             mouth_motor->setSpeed(i);
         }
         analogWrite(LedPin, sensorValue);
         mouth_motor->run(RELEASE);
-        tail_motor->run(RELEASE)
+        tail_motor->run(RELEASE);
         delay(1);
     }
 
