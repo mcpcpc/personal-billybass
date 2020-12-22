@@ -33,7 +33,6 @@ void loop() {
     uint8_t i;
     int sensorValue = analogRead(SoundInPin);
     //sensorValue = map(sensorValue,0,512,0,180);
-    //Serial.println(sensorValue); // serial monitor, comment out
     sensorValue = map(sensorValue,500,800,0,180);
     Serial.println(sensorValue); // serial monitor, comment out
     if (sensorValue > 15) {
@@ -41,18 +40,22 @@ void loop() {
         tail_motor->setSpeed(200);
         delay(1);
         tail_motor->run(FORWARD);
-        delay(10);
+        delay(100);
     }
 
-    if (sensorValue > 14) {
+    if (sensorValue > 18) {
         delay(1);
         mouth_motor->run(FORWARD);
         delay(1);
-        for (i=140; i<255; i++) {
+        for (i=140; i<245; i++) {
             mouth_motor->setSpeed(i);
         }
  
         mouth_motor->run(RELEASE);
+        //tail_motor->run(RELEASE);
+        //delay(1);
+    }
+    if (sensorValue > 15) {
         tail_motor->run(RELEASE);
         delay(1);
     }
